@@ -1,7 +1,7 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-  todos: [{ id: nanoid(), text: "Create React App", edit: false }],
+  todos: [{ id: nanoid(), text: "Create React App", edit: false , completed: false}],
 };
 
 export const TodoSlice = createSlice({
@@ -18,27 +18,37 @@ export const TodoSlice = createSlice({
       state.todos.push(todo);
     },
     removeTodo: (state, action) => {
-      state.todos = state.todos.filter((todo) => todo.id != action.payload);
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
     },
+
     editTodo: (state, action) => {
       console.log("this is action in slicer", action);
       state.todos.map((todo) => {
         if (todo.id === action.payload.id) {
           todo.edit = !todo.edit;
-        } else if (todo.id === action.payload.id && action.payload.text) {
-          todo.edit = !todo.edit;
           todo.text = action.payload.text;
         }
 
+        // } else if (todo.id === action.payload.id && action.payload.text) {
+        //   todo.edit = !todo.edit;
+        //   todo.text = action.payload.text;
+        // }
         // if (todo.id === action.payload.id) {
         //   todo.edit = !todo.edit;
         //   todo.text = action.payload.text;
         // }
       });
     },
+    toggleCompleted: ((state, action)=>{
+     state.todos.map((todo)=>{
+       if(todo.id === action.payload.id){
+         todo.completed = !todo.completed
+       }
+     })
+    })
   },
 });
 
-export const { addTodo, removeTodo, editTodo } = TodoSlice.actions;
+export const { addTodo, removeTodo, editTodo, toggleCompleted } = TodoSlice.actions;
 
 export default TodoSlice.reducer;
