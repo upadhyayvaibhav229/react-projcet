@@ -14,6 +14,7 @@ const AddTodo = () => {
     const TodoHandler = (e)=>{
         e.preventDefault();
         dispatch(addTodo(text))
+        setText("")
     }
 
   return (
@@ -24,7 +25,7 @@ const AddTodo = () => {
                 <form className='w-full text-white' onSubmit={TodoHandler}>
                     <div className='w-full'>
                         <h1 className='text-9xl text-yellow-500'>Just Do it.</h1>
-                    </div>
+                    </div>  
                     <div className='w-full mt-5 flex gap-x-1 bg-blue-500 rounded-lg'>
                         <input type='text' placeholder='ADD a task...' className='w-full px-2 py-2 rounded-lg bg-slate-600 text-white placeholder:text-2xl placeholder:px-2 text-2xl outline-none' value={text} onChange={(e)=> setText(e.target.value)}></input>
                         <button className='px-5 py-1 rounded-lg text-xl text-center text-' type='submit'>Add Todo</button>
