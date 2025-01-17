@@ -53,8 +53,12 @@ export const TodoSlice = createSlice({
          todo.completed = !todo.completed
        }
      })
-    })
+    }),
+    
   },
+
+
+
 });
 
 export const { addTodo, removeTodo, editTodo, toggleCompleted,updateTodo } = TodoSlice.actions;

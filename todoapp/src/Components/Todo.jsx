@@ -38,6 +38,7 @@ function Todos() {
             className="mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded w-[500px]"
             key={todo.id}
           >
+          
             {todo.edit? (
               <div className="flex items-center space-x-2">
                 <input
