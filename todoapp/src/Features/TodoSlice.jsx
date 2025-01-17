@@ -22,23 +22,30 @@ export const TodoSlice = createSlice({
     },
 
     editTodo: (state, action) => {
-      console.log("this is action in slicer", action);
+    
       state.todos.map((todo) => {
         if (todo.id === action.payload.id) {
           todo.edit = !todo.edit;
-          todo.text = action.payload.text;
+        }else{
+          return  
         }
-
-        // } else if (todo.id === action.payload.id && action.payload.text) {
-        //   todo.edit = !todo.edit;
-        //   todo.text = action.payload.text;
-        // }
-        // if (todo.id === action.payload.id) {
-        //   todo.edit = !todo.edit;
-        //   todo.text = action.payload.text;
-        // }
       });
     },
+
+    updateTodo: (state, action) => {
+      console.log("this is action in slicer from update", action);
+      state.todos.map((todo) => {
+        if (todo.id === action.payload.id && action.payload.text) {
+          todo.edit = !todo.edit;
+          todo.text = action.payload.text;
+        }else{
+          return
+        }
+        console.log(todo,"inside slicer");
+        
+      });
+    },
+
     toggleCompleted: ((state, action)=>{
      state.todos.map((todo)=>{
        if(todo.id === action.payload.id){
@@ -49,6 +56,6 @@ export const TodoSlice = createSlice({
   },
 });
 
-export const { addTodo, removeTodo, editTodo, toggleCompleted } = TodoSlice.actions;
+export const { addTodo, removeTodo, editTodo, toggleCompleted,updateTodo } = TodoSlice.actions;
 
 export default TodoSlice.reducer;

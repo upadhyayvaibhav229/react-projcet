@@ -1,22 +1,24 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeTodo, editTodo, toggleCompleted } from "../Features/TodoSlice";
+import { removeTodo, editTodo, toggleCompleted ,updateTodo} from "../Features/TodoSlice";
 
 function Todos() {
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
   const editRefs = useRef({});
-
+  
   const handleEditClick = (id) => {
     dispatch(editTodo({ id }));
   };
 
   const handleUpdate = (id) => {
     const inputElement = editRefs.current[id];
-    const updatedText = inputElement?.value.trim();
+    console.log("inputElement", inputElement);
+    const updatedText = inputElement.value;
+    console.log("updatedText",updatedText);
     if (updatedText) {
-      dispatch(editTodo({ id, text: updatedText }));
+      dispatch(updateTodo({ id, text: updatedText }));
     } else {
       alert("Todo text cannot be empty.");
     }
@@ -25,6 +27,7 @@ function Todos() {
   const handleComplete = (id) => {
     dispatch(toggleCompleted({ id }));
   };
+  console.log(todos);
 
   return (
     <>
@@ -35,7 +38,7 @@ function Todos() {
             className="mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded w-[500px]"
             key={todo.id}
           >
-            {todo.edit ? (
+            {todo.edit? (
               <div className="flex items-center space-x-2">
                 <input
                   type="text"

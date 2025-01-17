@@ -8,9 +8,6 @@ const AddTodo = () => {
     const dispatch = useDispatch();
 
     const TodoData = useSelector(((state=> state.todos)))
-    console.log(TodoData);
-    
-
     const TodoHandler = (e)=>{
         e.preventDefault();
         dispatch(addTodo(text))
