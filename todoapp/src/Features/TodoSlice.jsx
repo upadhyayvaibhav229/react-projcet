@@ -9,6 +9,7 @@ export const TodoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
+      
       const todo = {
         id: nanoid(),
         text: action.payload,

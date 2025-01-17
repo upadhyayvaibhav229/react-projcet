@@ -10,9 +10,18 @@ const AddTodo = () => {
     const TodoData = useSelector(((state=> state.todos)))
     const TodoHandler = (e)=>{
         e.preventDefault();
-        dispatch(addTodo(text))
-        setText("")
+        if (text === "") {
+            alert("Todo text cannot be empty")
+        }else{
+
+            dispatch(addTodo(text))
+            setText("")
+        }
+
     }
+
+    console.log(TodoData);
+    
 
   return (
     <>
